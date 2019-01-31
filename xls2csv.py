@@ -4,7 +4,6 @@ import csv
 
 
 class x2c():
-
     def __init__(self):
         self.enc = {'â‚¬': '€', 'â€š': '‚', 'â€ž': '„', 'â€¦': '…', 'â€¡': '‡', 'â€°': '‰', 'â€¹': '‹', 'â€˜': '‘',
                    'â€™': '’', 'â€œ': '“', 'â€¢': '•', 'â€“': '–', 'â€”': '—', 'â„¢': '™', 'â€º': '›', 'Ã€': 'À',
@@ -25,9 +24,11 @@ class x2c():
         self.encoding_solved = 0
 
     def _celling(self, xcell) -> str:
+        # Ersetzt Zeilenumbrüche und Tabluatoren durch Leerzeichen
         value = str(xcell.value).replace('\n', ' ').replace('\t', ' ').replace('\r', ' ').replace("None", '')
-        if chr(0xC3) in value or chr(0xC2) in value or chr(0xC5) in value or chr(0xE2) in value or chr(0xCB) in value or chr(0xC6) in value:
 
+        # Sind Sonderzeichen enthalten, dann die Zeichenliste durchgehen...
+        if chr(0xC3) in value or chr(0xC2) in value or chr(0xC5) in value or chr(0xE2) in value or chr(0xCB) in value or chr(0xC6) in value:
             for k, v in self.enc.items():
                 if k in value:
                     value = value.replace(k, v)
