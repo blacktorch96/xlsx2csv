@@ -16,8 +16,5 @@ if load_file == "":
 file_root, file_ext = os.path.splitext(load_file)
 save_file = file_root + ".csv"
 
-print(load_file)
-print(save_file)
-
 xlsx2csv = x2c()
 xlsx2csv.convert_to_csv(load_file, save_file)
